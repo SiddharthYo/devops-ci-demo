@@ -26,3 +26,5 @@ npm start      # http://localhost:3000
 
 The workflow in `.github/workflows/main.yml` runs on every push to `main` and on every pull request into `main`.
 It checks out the code, installs Node.js, runs `npm ci`, and then `npm test`.
+
+Pipeline demo run
