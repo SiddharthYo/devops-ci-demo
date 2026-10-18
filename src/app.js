@@ -11,7 +11,7 @@ function createApp(store = createTaskStore()) {
   });
 
   app.get('/health', (req, res) => {
-    res.json({ status: 'down' });
+    res.json({ status: 'ok' });
   });
 
   app.get('/api/tasks', (req, res) => {
