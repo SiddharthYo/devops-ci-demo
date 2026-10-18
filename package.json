@@ -1,0 +1,24 @@
+{
+  "name": "devops-ci-demo",
+  "version": "1.0.0",
+  "description": "Small Node.js/Express Task Tracker API used to demonstrate a GitHub Actions CI pipeline (DevOps Theory IA).",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "test": "jest"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "express": "^5.1.0"
+  },
+  "devDependencies": {
+    "jest": "^30.0.0",
+    "supertest": "^7.1.0"
+  },
+  "jest": {
+    "testEnvironment": "node"
+  }
+}

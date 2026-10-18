@@ -1,0 +1,40 @@
+name: CI - Build and Test
+
+# WHEN does this workflow run?
+on:
+  push:
+    branches: [main]          # every push to main
+  pull_request:
+    branches: [main]          # every pull request that targets main
+  workflow_dispatch:          # lets you also start it manually from the Actions tab
+
+# Give the workflow read-only access to the repo (security best practice).
+permissions:
+  contents: read
+
+jobs:
+  build-and-test:
+    name: Build and Test (Node ${{ matrix.node-version }})
+    runs-on: ubuntu-latest    # GitHub spins up a fresh Linux virtual machine (the "runner")
+    timeout-minutes: 10
+
+    strategy:
+      fail-fast: false
+      matrix:
+        node-version: [22.x, 24.x]   # the same job runs once per Node version
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+
+      - name: Set up Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v6
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: npm              # caches downloaded packages to speed up later runs
+
+      - name: Install dependencies
+        run: npm ci               # clean, exact install from package-lock.json (CI version of npm install)
+
+      - name: Run tests
+        run: npm test
